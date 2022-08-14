@@ -1,0 +1,10 @@
+[package]
+name = "TheLegendOfGavinWood"
+version = "0.1.0"
+# authors = ["Nicolas Baez <w0m85k27@protonmail.com>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bracket-lib="~0.8.1"
