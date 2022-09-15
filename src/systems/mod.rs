@@ -6,6 +6,7 @@ mod map_render;
 mod movement;
 mod player_input;
 mod random_move;
+mod tooltips;
 use crate::prelude::*;
 
 pub fn build_input_scheduler() -> Schedule {
@@ -15,6 +16,8 @@ pub fn build_input_scheduler() -> Schedule {
         .flush()
         .add_system(map_render::map_render_system())
         .add_system(entity_render::entity_render_system())
+        .add_system(hud::hud_system())
+        .add_system(tooltips::tooltips_system())
         .build()
 }
 

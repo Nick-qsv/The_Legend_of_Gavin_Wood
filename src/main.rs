@@ -70,6 +70,8 @@ impl GameState for State {
         ctx.cls();
         //Current keyboard state availible to any system that requests it
         self.resources.insert(ctx.key);
+        ctx.set_active_console(0);
+        self.resources.insert(Point::from_tuple(ctx.mouse_pos()));
         let current_state = self.resources.get::<TurnState>().unwrap().clone();
         match current_state {
             TurnState::AwaitingInput => self
