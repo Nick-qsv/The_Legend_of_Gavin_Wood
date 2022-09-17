@@ -2,6 +2,7 @@ use bracket_lib::prelude::{to_cp437, ColorPair};
 
 use crate::prelude::*;
 
+//creates the Player entity and puts it into the ecs
 pub fn spawn_player(ecs: &mut World, pos: Point) {
     ecs.push((
         Player,
