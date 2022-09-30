@@ -46,3 +46,16 @@ fn goblin() -> (i32, String, FontCharType) {
 fn orc() -> (i32, String, FontCharType) {
     (2, "Orc".to_string(), to_cp437('o'))
 }
+
+pub fn spawn_substrate(ecs: &mut World, pos: Point) {
+    ecs.push((
+        Item,
+        Substrate,
+        pos,
+        Render {
+            color: ColorPair::new(WHITE, BLACK),
+            glyph: to_cp437('|'),
+        },
+        Name("Substrate".to_string()),
+    ));
+}

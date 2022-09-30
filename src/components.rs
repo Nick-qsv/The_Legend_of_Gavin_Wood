@@ -38,3 +38,10 @@ pub struct WantsToAttack {
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ChasingPlayer;
+
+//denotes an entity is an Item, no movement or health but appears on map
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Item;
+
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Substrate;
