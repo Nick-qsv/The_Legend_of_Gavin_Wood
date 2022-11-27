@@ -5,9 +5,10 @@ use crate::prelude::*;
 #[read_component(ChasingPlayer)]
 #[read_component(Health)]
 #[read_component(Player)]
+#[read_component(FieldOfView)]
 pub fn chasing(#[resource] map: &Map, ecs: &SubWorld, commands: &mut CommandBuffer) {
     //entities with Point positions and chasing player tags
-    let mut movers = <(Entity, &Point, &ChasingPlayer)>::query();
+    let mut movers = <(Entity, &Point, &ChasingPlayer, &FieldOfView)>::query();
 
     //all entities with point and health components
     let mut positions = <(Entity, &Point, &Health)>::query();
@@ -24,7 +25,10 @@ pub fn chasing(#[resource] map: &Map, ecs: &SubWorld, commands: &mut CommandBuff
     let search_targets = vec![player_idx];
     let dijkstra_map = DijkstraMap::new(SCREEN_WIDTH, SCREEN_HEIGHT, &search_targets, map, 1024.0);
 
-    movers.iter(ecs).for_each(|(entity, pos, _)| {
+    movers.iter(ecs).for_each(|(entity, pos, _, fov)| {
+        if !fov.visible_tiles.contains(&player_pos) {
+            return;
+        }
         //get the monster point
         let idx = map_idx(pos.x, pos.y);
 
